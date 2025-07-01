@@ -1,0 +1,114 @@
+/* Reset and base styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f6fc;
+  color: #3e0066;
+  text-align: center;
+  padding: 0;
+}
+
+/* Navbar */
+.hero-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 15px 30px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-family: 'Tangerine', cursive;
+  /* font-size: 39px; */
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #6a1b9a;
+  z-index: 2;
+  margin: 9px 10px;
+}
+
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #444;
+  font-weight: 500;
+  padding-bottom: 3px;
+  transition: color 0.3s, border-bottom 0.3s;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+  color: #7c3aed;
+  border-bottom: 2px solid #7c3aed;
+}
+
+/* Room selection section */
+.room-selection {
+  padding: 60px 20px;
+}
+
+.room-selection h2 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  font-family: 'Tangerine', cursive;
+  color: #4b0082;
+  font-weight: bold;
+}
+
+/* Room cards container */
+.room-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+/* Each room card */
+.room-card {
+  background-color: #dab6f6;
+  padding: 25px 30px;
+  border-radius: 15px;
+  width: 280px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.room-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.room-card h3 {
+  font-size: 1.3rem;
+  color: #3e0066;
+  font-weight: 600;
+}
+h1 {
+      font-family: 'Yatra One', cursive;
+      text-align: center;
+      margin-bottom: 40px;
+      color: #5e3a2c;
+    }
+    .room-selection h2 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  font-family: 'Yatra One', cursive;
+  color: #5e3a2c;
+  font-weight: bold;
+}

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css">
+  <title>Aarambh - Narration</title>
+  <style>
+  body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+header {
+  background: #111;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#era-name {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+#lang-select {
+  background: #222;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+main {
+  flex-grow: 1;
+  padding: 20px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+#text-display {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 12px;
+  font-size: 1.3rem;
+  line-height: 1.5;
+  max-width: 900px;
+  margin: auto;
+  min-height: 150px;
+}
+
+footer {
+  background: #111;
+  padding: 10px 20px;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+button {
+  background: #00ccff;
+  border: none;
+  color: black;
+  font-weight: 700;
+  padding: 10px 20px;
+  margin: 10px 10px 0;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #00a3cc;
+}
+
+#floating-images {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.floating-img {
+  position: absolute;
+  width: 180px;
+  border-radius: 5px;
+  opacity: 0;
+  animation: floatFade 8s ease-in-out forwards;
+  pointer-events: none;
+}
+
+@keyframes floatFade {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(30px);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(1.05) translateY(-30px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1) translateY(-60px);
+  }
+}
+
+/* ✅ Responsive: 560px and below */
+@media (max-width: 560px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  #era-name {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+
+  #lang-select {
+    font-size: 0.9rem;
+    width: 90%;
+    max-width: 200px;
+  }
+
+  #text-display {
+    font-size: 1.1rem;
+    padding: 15px;
+    min-height: 100px;
+  }
+
+  button {
+    width: 90%;
+    max-width: 250px;
+    font-size: 1rem;
+    padding: 10px;
+    margin: 8px auto;
+    display: block;
+  }
+}
+
+/* ✅ Extra Small Screens: 320px and below */
+@media (max-width: 320px) {
+  #era-name {
+    font-size: 1.1rem;
+  }
+
+  #text-display {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  #lang-select {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  .floating-img {
+    width: 140px;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div id="era-name">Era Name</div>
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <select id="lang-select">
+        <option value="en">English</option>
+        <option value="hi">Hindi</option>
+        <option value="te">Telugu</option>
+      </select>
+      <a href="narrationroom.html">
+        <button id="move-room-btn" type="button">Move to Room of History</button>
+      </a>
+    </div>
+  </header>
+
+  <main id="main-area">
+    <div id="floating-images"></div>
+    <div id="text-display">Click Start to begin narration...</div>
+  </main>
+
+  <footer>
+    <button id="start-btn">Start</button>
+    <button id="stop-btn" disabled>Stop</button>
+  </footer>
+
+  <audio id="audio-player" preload="auto"></audio>
+
+  <script>
+    const eras = {
+  ancient: {
+    name: "Ancient Era",
+    text: {
+      en: "I am Bharat… born of sacred rivers, nurtured by sages, and shaped by seekers. In my womb blossomed the Vedas, echoing through my forests and mountains. I was the Golden Bird — Sone Ki Chidiya — rich not just in gold,  but in soul. My people lived with wisdom, balance, and devotion to the cosmos. Knowledge flowed through me like the Ganga, pure and eternal. Civilizations like the Indus Valley called me home, and kings ruled with dharma. Oh, how glorious were my temples, my chants, my unity with nature. That was my dawn — a time when my soul and soil danced in divine rhythm.",
+      hi: "मैं भारत हूँ… पवित्र नदियों की जननी, ऋषियों द्वारा पोषित, साधकों द्वारा गढ़ी गई हूँ। मेरी कोख में वेदों ने अंकुरित होकर जन्म लिया — वे मेरे वनों और पर्वतों में गूंज उठे। मैं थी एक स्वर्ण पक्षी — सोने की चिड़िया — केवल सोने से नहीं, अपितु आत्मा से भी समृद्ध थी। मेरे लोग ज्ञान से जीवन जीते थे, संतुलन में रहते थे, और ब्रह्मांड के प्रति श्रद्धा से भरपूर थे। ज्ञान मेरे भीतर गंगा की धाराओं की तरह बहता था — पवित्र, शाश्वत। सिंधु घाटी जैसी प्राचीन सभ्यताएँ मुझे ही अपना घर मानती थीं। राजा धर्म के अनुसार शासन करते थे। मेरे मंदिर कितने भव्य थे! मेरे मंत्र, मेरी प्रकृति से एकता कितनी अद्भुत थी! वह था मेरा प्रभात — एक युग… जब मेरी आत्मा और मेरी मिट्टी आध्यात्मिक लय में एक होकर नृत्य करती थीं।",
+      te: "నేను భారత్… పవిత్ర నదుల పుట్టినిల్లు, ఋషుల చేత పోషించబడినదానిని, సాధకుల చేత మలచబడినదానిని. నా గర్భంలో వేదాలు వికసించాయి — అవి నా అడవుల్లో, నా కొండల్లో మోగిపోయాయి. నేను ఒకప్పుడు బంగారు పక్షి — సువర్ణ పక్షి — బంగారంతో మాత్రమే కాదు, నా ఆత్మతోనూ సంపన్నురాలిని. నా ప్రజలు జ్ఞానంతో జీవించేవారు, సమతుల్యతతో జీవించేవారు, విశ్వంపై భక్తితో జీవించేవారు. జ్ఞానం గంగానదిలా నాలో ప్రవహించేది — పవిత్రంగా, శాశ్వతంగా. ఇందస్ లోయ వంటి నాగరికతలు నన్నే తమ నివాసంగా చేసుకున్నాయి. రాజులు ధర్మంతో పాలించేవారు. నా దేవాలయాలు ఎంత మహిమగలవి! నా మంత్రోచ్చారణలు, ప్రకృతితో నా ఏకత్వం ఎంత అద్భుతం! అది నా ఉదయం — ఒక కాలం… ఆ సమయంలో నా ఆత్మ మరియు మట్టి ఆధ్యాత్మిక రీతిలో కలిసిపోయి నృత్యం చేశాయి."
+    },
+    audio: {
+      en: "assets/audios/ancient.mp3",
+      hi: "assets/audios/ancient-hi.mp3",
+      te: "assets/audios/ancient-te.mp3"
+    },
+    bg: "black",
+    images: [
+      "assets/images/float1.png",
+      "assets/images/float2.png",
+      "assets/images/float3.png"
+    ]
+
+  },
+
+  medieval: {
+    name: "Medieval Era",
+    text: {
+      en: "I am the Medieval Bharat… where devotion shaped kingdoms and art reached divine heights. Mighty empires rose—like the Cholas, Mughals, and Vijayanagara—building temples, forts, and mosques that kissed the skies. It was an age of Bhakti and Sufi movements, echoing with poetry and song. Though battles raged, so did the flame of culture, weaving tales of valour and surrender. From the Qutub Minar to the Meenakshi Temple, my lands became a canvas of faith and architecture.",
+      hi: "मैं हूँ मध्यकालीन भारत… जहां भक्ति ने राजवंशों को आकार दिया और कला ने दिव्यता को छू लिया। चोल, मुग़ल और विजयनगर जैसे साम्राज्य उभरे — जिन्होंने मंदिरों, किलों और मस्जिदों का निर्माण किया जो आकाश को छूते थे। यह भक्ति और सूफी आंदोलन का युग था, जहां कविता और संगीत की गूंज थी। युद्ध होते रहे, पर संस्कृति की लौ भी जलती रही — वीरता और समर्पण की कहानियाँ बुनी जाती रहीं। कुतुब मीनार से लेकर मीनाक्षी मंदिर तक, मेरी धरती आस्था और वास्तुकला का एक कैनवास बन गई।",
+      te: "నేను మధ్యయుగ భారత్… భక్తి రాజ్యాలను ఆకారం ఇచ్చిన, కళను దైవిక శిఖరాలకు తీసుకెళ్లిన కాలం. చోలులు, విజయనగర, మొఘలుల వంటి సామ్రాజ్యాలు గొప్ప ఆలయాలు, కోటలు మరియు మసీదులు నిర్మించాయి. ఇది భక్తి మరియు సూఫీ ఉద్యమాల కాలం, పాటలు, కవితలు ప్రతి మూల నిండినయుగం. యుద్ధాలు జరిగినా, సంస్కృతిక దీపం వెలిగింది — వీరత మరియు శరణాగత గాథలను నెమరేసింది. కుతుబ్ మినార్ నుండి మీనాక్షి ఆలయం వరకూ, నా నేల నమ్మకం మరియు శిల్పకళలతో కళాకాన్వాస్ అయింది."
+    },
+    audio: {
+      en: "assets/audios/medieval.mp3",
+      hi: "assets/audios/medieval-hi.mp3",
+      te: "assets/audios/medieval-te.mp3"
+    },
+    bg: "black"
+  },
+ future: {
+    name: "Future Era",
+    text: {
+      en: "And now… I look ahead with eyes full of stars.My youth carry laptops and scriptures, dreams and duty.My villages light up, my daughters fly to the moon, and my farmers feed the world.I dream of a tomorrow where no child sleeps hungry, no mind is silenced by hate.A future where progress walks hand in hand with tradition.I am not just a country…I am an emotion, a legacy, a promise.I am Bharat — the soul of a billion hearts.And my story… continues.",
+      hi: "और अब… मैं भविष्य की ओर देखता हूँ, आँखों में सितारे लिए।मेरे युवा कंप्यूटर और शास्त्र दोनों लिए चलते हैं — सपने और ज़िम्मेदारी साथ।मेरे गाँव रौशन हो रहे हैं, मेरी बेटियाँ चाँद पर उड़ान भर रही हैं, और मेरे किसान दुनिया को अन्न दे रहे हैं।मैं एक ऐसे कल का सपना देखता हूँ — जहाँ कोई बच्चा भूखा न सोए, कोई मन नफरत से ना डरे।एक ऐसा भविष्य जहाँ प्रगति और परंपरा साथ-साथ चलें।मैं सिर्फ एक देश नहीं हूँ…मैं एक भावना हूँ, एक विरासत, एक वादा।मैं भारत हूँ — एक अरब दिलों की आत्मा।और मेरी कहानी… चलती रहेगी।",
+      te: "నేనెదురుగా చూస్తున్నాను, నా కన్నుల్లో నక్షత్రాలతో.నా యువతులు ల్యాప్టాప్‌లు, గ్రంథాలు — కలలతో పాటు బాధ్యతను మోస్తున్నారు.నా గ్రామాలు వెలుగుతో నిండుతున్నాయి, నా కుమార్తెలు చంద్రుడి వైపు ఎగురుతున్నారు, నా రైతులు ప్రపంచానికి అన్నం అందిస్తున్నారు.ఒక కలల భవిష్యత్తును ఊహిస్తున్నాను — ఎవరూ ఆకలితో నిద్రపోకుండా, ఎవరూ ద్వేషంతో మౌనంగా ఉండకుండా.అక్కడ అభివృద్ధి సంప్రదాయాలను పక్కన బెట్టి నడుస్తుంది.నేను కేవలం ఒక దేశం కాదు…నేను ఒక భావన, ఒక వారసత్వం, ఒక హామీ.నేను భారతం — కోటి హృదయాల ఆత్మ.నా కథ… ఇంకా సాగుతుంది."
+    },
+    audio: {
+      en: "assets/audios/future.mp3",
+      hi: "assets/audios/future-hi.mp3",
+      te: "assets/audios/future-te.mp3"
+    },
+    bg: "black",
+    images: [
+      "assets/images/float4.png",
+      "assets/images/float5.png",
+      "assets/images/float6.png"
+    ]
+
+ }
+  
+};
+
+     function getQueryParam(param) {
+    return new URLSearchParams(window.location.search).get(param);
+  }
+
+  const eraKey = getQueryParam('era') || 'ancient';
+  const eraData = eras[eraKey];
+
+  const eraNameEl = document.getElementById('era-name');
+  const textDisplay = document.getElementById('text-display');
+  const langSelect = document.getElementById('lang-select');
+  const startBtn = document.getElementById('start-btn');
+  const stopBtn = document.getElementById('stop-btn');
+  const audioPlayer = document.getElementById('audio-player');
+  const mainArea = document.getElementById('main-area');
+  const floatingArea = document.getElementById('floating-images');
+
+  if (!eraData) {
+    eraNameEl.textContent = "Era not found";
+    textDisplay.textContent = "Please go back and select a valid era.";
+    startBtn.disabled = true;
+    langSelect.disabled = true;
+  } else {
+    eraNameEl.textContent = eraData.name;
+    if (eraData.bg === "black") {
+      mainArea.style.background = "#000";
+    } else {
+      mainArea.style.backgroundImage = `url('${eraData.bg}')`;
+    }
+  }
+
+  let isPlaying = false;
+  const imgList = eraData.images || [];
+// Add as many as you want
+
+  let floatingTimeouts = [];
+
+  function spawnFloatingImage(src) {
+    const img = document.createElement("img");
+    img.src = src;
+    img.className = "floating-img";
+    img.style.top = `${Math.random() * 70 + 10}%`;
+    img.style.left = `${Math.random() * 80 + 10}%`;
+    floatingArea.appendChild(img);
+
+    setTimeout(() => img.remove(), 8000);
+  }
+
+  function spawnImagesSequentiallyOnce() {
+    floatingArea.innerHTML = "";
+    floatingTimeouts.forEach(clearTimeout);
+    floatingTimeouts = [];
+
+    imgList.forEach((src, index) => {
+      const timeoutId = setTimeout(() => {
+        spawnFloatingImage(src);
+      }, index * 3000); // Delay each image by 3 seconds
+      floatingTimeouts.push(timeoutId);
+    });
+  }
+
+  function stopFloatingImages() {
+    floatingTimeouts.forEach(clearTimeout);
+    floatingTimeouts = [];
+    floatingArea.querySelectorAll('img.floating-img').forEach(img => img.remove());
+  }
+
+  function startNarration() {
+    const lang = langSelect.value;
+    textDisplay.textContent = "";
+    audioPlayer.src = eraData.audio[lang];
+    audioPlayer.play();
+
+    isPlaying = true;
+    spawnImagesSequentiallyOnce();
+
+    audioPlayer.onplay = () => {
+      textDisplay.textContent = eraData.text[lang];
+    };
+
+    audioPlayer.onended = stopNarration;
+
+    startBtn.disabled = true;
+    stopBtn.disabled = false;
+    langSelect.disabled = true;
+  }
+
+  function stopNarration() {
+    isPlaying = false;
+    audioPlayer.pause();
+    audioPlayer.currentTime = 0;
+
+    stopFloatingImages();
+
+    textDisplay.textContent = "Narration stopped.";
+    startBtn.disabled = false;
+    stopBtn.disabled = true;
+    langSelect.disabled = false;
+  }
+
+  startBtn.addEventListener('click', startNarration);
+  stopBtn.addEventListener('click', stopNarration);
+  </script>
+</body>
+</html>
+

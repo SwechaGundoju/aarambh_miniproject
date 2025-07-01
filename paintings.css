@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Yatra+One&display=swap');
+
+body {
+  font-family: 'Yatra One', cursive;
+  background-color: #fffdf5;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  overflow-x: hidden;
+}
+
+h1 {
+  text-align: center;
+  font-size: 3rem;
+  margin: 40px 0 20px;
+  color: #5e3c16;
+}
+
+.back-link {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 30px;
+  background-color: #fff0dc;
+  font-size: 1rem;
+  border-bottom: 2px solid #e0c097;
+}
+
+.back-link a {
+  text-decoration: none;
+  color: #914e1f;
+  font-weight: bold;
+}
+
+/* SECTION STYLING */
+.section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 60px auto;
+  max-width: 1100px;
+  padding: 30px 20px;
+  border-bottom: 1px solid #e2d4bb;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.section img {
+  flex: 1 1 300px;
+  max-width: 300px;
+  height: auto;
+  border-radius: 10px;
+  margin: 0 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.section .text {
+  flex: 2 1 500px;
+  text-align: justify;
+}
+
+.section .title {
+  font-size: 1.8rem;
+  color: #7b3f00;
+  margin-bottom: 10px;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.section .title:hover {
+  color: #aa5c16;
+  text-decoration: underline;
+}
+
+.section p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .section {
+    flex-direction: column !important;
+    text-align: center;
+  }
+
+  .section img {
+    margin: 0 0 20px 0;
+  }
+
+  .section .text {
+    text-align: center;
+  }
+}

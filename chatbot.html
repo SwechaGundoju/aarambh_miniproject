@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Aarambh Hybrid Chatbot</title>
+  <link rel="stylesheet" href="assets/chatbot.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex; justify-content: center; align-items: center;
+      height: 100vh; background: #f5f5f5;
+    }
+    #chat-container {
+      width: 400px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #aaa;
+      display: flex;
+      flex-direction: column;
+      height: 500px;
+      overflow: hidden;
+    }
+    #chat-messages {
+      flex-grow: 1;
+      padding: 15px;
+      overflow-y: auto;
+      border-bottom: 1px solid #ddd;
+    }
+    .message { margin: 10px 0; max-width: 75%; padding: 10px; border-radius: 6px; }
+    .bot { background: #e0f7fa; align-self: flex-start; }
+    .user { background: #c8e6c9; align-self: flex-end; }
+    #options {
+      display: flex; flex-wrap: wrap; gap: 10px; padding: 10px;
+      background: #fafafa; border-top: 1px solid #ddd;
+    }
+    #options button {
+      background: #007bff; color: white; border: none; padding: 8px 12px;
+      border-radius: 4px; cursor: pointer;
+    }
+    #options button:hover { background: #0056b3; }
+    #input-area {
+      display: flex; padding: 10px; background: #fafafa;
+      border-top: 1px solid #ddd;
+    }
+    #user-input {
+      flex-grow: 1; padding: 8px;
+      border: 1px solid #ccc; border-radius: 4px;
+      font-size: 16px;
+    }
+    #send-btn {
+      margin-left: 10px;
+      background: #007bff; color: white; border: none; padding: 8px 12px;
+      border-radius: 4px; cursor: pointer;
+    }
+    #send-btn:hover { background: #0056b3; }
+  .option-button {
+  display: block;            /* Makes each button take a full line */
+  margin: 8px 0;             /* Adds vertical spacing */
+  padding: 10px 16px;
+  width: fit-content;        /* Optional: fits text width, or use 100% if needed */
+  font-size: 16px;
+  background-color: #e6e6fa; /* Light lavender */
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.option-button:hover {
+  background-color: #5b21b6;      /* darker purple on hover */
+  color: #e0d7ff;                /* lighter text on hover */
+}
+
+
+
+#chat-container {
+  width: 450px;           /* wider container */
+  height: 650px;          /* taller container */
+  border: 2px solid #ddd; /* subtle border */
+  border-radius: 15px;    /* smooth rounded corners */
+  background-color: #fff; /* clean white background */
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Messages area */
+#chat-messages {
+  flex-grow: 1;          /* take up available vertical space */
+  padding: 20px;
+  overflow-y: auto;      /* scroll when messages overflow */
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+/* Input container - to hold input and send button */
+#input-container {
+  display: flex;
+  padding: 15px 20px;
+  border-top: 1px solid #eee;
+  background-color: #fafafa;
+}
+
+/* Input field */
+#user-input {
+  flex-grow: 1;
+  padding: 12px 15px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1.5px solid #ccc;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+#user-input:focus {
+  border-color: #6c63ff; /* subtle purple focus */
+}
+
+/* Send button */
+#send-btn {
+  margin-left: 12px;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: none;
+  background-color: #6c63ff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#send-btn:hover {
+  background-color: #574fbd;
+}
+@media screen and (max-width: 400px) {
+  #chat-container {
+    width: 100%;
+    height: 95vh;
+    border-radius: 8px;
+  }
+
+  #chat-messages {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  #input-container {
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+  }
+
+  #user-input {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  #send-btn {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+    margin-left: 0;
+  }
+
+  #options {
+    flex-direction: column;
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .option-button {
+    font-size: 14px;
+    width: 100%;
+    padding: 10px;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+<div id="chat-container">
+  <div id="chat-messages"></div>
+
+  <div id="options" style="display:none;"></div>
+
+  <div id="input-area">
+    <input type="text" id="user-input" placeholder="Type your message here..." autocomplete="off" />
+    <button id="send-btn">Send</button>
+  </div>
+  <button id="back-main-btn" style="margin-top:10px; padding:8px 15px; border-radius:5px; background:#6b46c1; color:white; border:none; cursor:pointer;">
+  Back to Main Page
+</button>
+</div>
+
+
+
+<script src="assets/chatbot.js"></script>
+</body>
+</html>

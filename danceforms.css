@@ -1,0 +1,273 @@
+/* Base styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f6ff;
+  color: #4c0070;
+  margin: 0;
+  padding: 0;
+}
+
+/* Back links container */
+.back-link {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 30px;
+  font-weight: 700;
+  font-size: 1rem;
+  background-color: #fff0f6;
+  box-shadow: 0 2px 8px rgba(76, 0, 112, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.back-link a {
+  text-decoration: none;
+  color: #a0522d;
+  transition: color 0.3s ease;
+}
+
+.back-link a:hover {
+  color: #6b2c0f;
+}
+
+/* Page heading */
+.page-heading {
+  font-family: 'Yatra One', cursive;
+  font-size: 3.5rem;
+  text-align: center;
+  margin: 40px 0 60px 0;
+  color: #5e3a2c;
+}
+
+/* Container for all sections */
+.section-container {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  padding: 0 30px 60px 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Each dance section */
+.dance-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+/* Even sections: video left, text right */
+.dance-section[data-order="even"] {
+  flex-direction: row;
+}
+
+/* Odd sections: video right, text left */
+.dance-section[data-order="odd"] {
+  flex-direction: row-reverse;
+}
+
+/* Show class to reveal sections */
+.dance-section.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Video container */
+.video-container {
+  flex: 1 1 50%;
+  max-width: 500px;
+  box-shadow: 0 8px 20px rgba(76, 0, 112, 0.15);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.video-container video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px;
+}
+
+/* Hover zoom effect on video */
+.video-container:hover {
+  transform: scale(1.05);
+}
+
+/* Text container */
+.text-container {
+  flex: 1 1 45%;
+  color: #4c0070;
+}
+
+.text-container h2 {
+  font-family: 'Yatra One', cursive;
+  font-size: 2.4rem;
+  margin-bottom: 15px;
+  color: #7c3a00;
+}
+
+.text-container p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+/* Strong inside paragraph for state */
+.text-container p strong {
+  color: #a0522d;
+  font-weight: 700;
+}
+.back-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffeaea;
+  padding: 1rem;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  font-family: 'Montserrat', sans-serif;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.back-link a {
+  color: #a0522d;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.back-link a:hover {
+  text-decoration: underline;
+}
+.title-link {
+  text-decoration: none;
+  color: inherit; /* so it uses the same text color as .title */
+  display: inline-block; /* behaves like a div/block */
+  font-weight: bold;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.title-link:hover {
+  text-decoration: underline; /* or any hover effect you want */
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 768px) {
+  .dance-section,
+  .dance-section[data-order="even"],
+  .dance-section[data-order="odd"] {
+    flex-direction: column !important;
+  }
+
+  .video-container,
+  .text-container {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .page-heading {
+    font-size: 2.8rem;
+    margin-bottom: 40px;
+  }
+
+  .back-link {
+  display: flex;
+  justify-content: space-between; /* puts max space between the two links */
+  margin-bottom: 25px;
+  padding: 1rem 0;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.back-link a {
+  color: #a0522d;
+  text-decoration: none;
+}
+
+.back-link a:hover {
+  text-decoration: underline;
+}
+.title-link {
+  text-decoration: none;
+  color: inherit; /* so it uses the same text color as .title */
+  display: inline-block; /* behaves like a div/block */
+  font-weight: bold;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.title-link:hover {
+  text-decoration: underline; /* or any hover effect you want */
+}
+}
+@media (max-width: 570px) {
+  .dance-section,
+  .dance-section[data-order="even"],
+  .dance-section[data-order="odd"] {
+    flex-direction: column !important;
+    gap: 20px;
+    padding: 0 10px;
+  }
+
+  .video-container,
+  .text-container {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .video-container video {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+  }
+
+  .page-heading {
+    font-size: 2.2rem;
+    margin: 30px 0 40px 0;
+    text-align: center;
+    padding: 0 15px;
+  }
+
+  .text-container h2 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .text-container p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    text-align: justify;
+  }
+
+  .back-link {
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px 15px;
+    text-align: center;
+  }
+
+  .back-link a {
+    font-size: 0.95rem;
+  }
+
+  .title-link {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+
+  .section-container {
+    gap: 60px;
+    padding: 0 20px 40px;
+  }
+}

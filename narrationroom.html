@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Tangerine&display=swap" rel="stylesheet">
+<title>Aarambh - Room of History</title>
+<style>
+  * {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #000; /* black background */
+  margin: 0;
+  padding: 0;
+  background-color: #000 !important;
+  overflow-x: hidden;
+}
+
+.hero-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #1a1a1a;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 2rem;
+  font-family: 'Tangerine', cursive;
+  color: #a020f0;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  font-weight: 600;
+  color: white;
+}
+
+.nav-links li a.active {
+  color: #a020f0;
+}
+
+h1 {
+  width: 100%;
+  text-align: center;
+  margin: 30px 0;
+  font-weight: 700;
+  font-size: 2.5rem;
+  font-family: 'Tangerine', cursive;
+  color: #a020f0;
+}
+
+/* ✅ Era Container for horizontal boxes */
+.era-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.era-box {
+  background: #222;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 220px;
+  cursor: pointer;
+  box-shadow: 0 0 8px #00ccff;
+  transition: transform 0.3s ease;
+  overflow: hidden;
+  text-align: center;
+}
+
+.era-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #00ccff;
+}
+
+.era-box img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+}
+
+.era-box h2 {
+  margin: 15px 0 20px;
+  font-weight: 600;
+  color: #a020f0;
+}
+
+/* ✅ Media Query: Tablets and small laptops (max-width: 560px) */
+@media (max-width: 560px) {
+  .hero-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .logo {
+    font-size: 1.8rem;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .era-box {
+    width: 90%;
+  }
+
+  .era-box img {
+    height: 120px;
+  }
+}
+
+/* ✅ Media Query: Phones (max-width: 400px) */
+@media (max-width: 400px) {
+  .logo {
+    font-size: 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  .era-box img {
+    height: 100px;
+  }
+
+  .era-box h2 {
+    font-size: 1rem;
+  }
+}
+/* ✅ Ultra Small Screen Fix: For 308px and below */
+@media (max-width: 308px) {
+  .hero-header {
+    flex-direction: column;
+    padding: 10px 15px;
+    text-align: center;
+  }
+
+  .logo {
+    font-size: 1.1rem;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  h1 {
+    font-size: 1.2rem;
+    margin: 15px 10px;
+  }
+
+  .era-box {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .era-box img {
+    height: 80px;
+  }
+
+  .era-box h2 {
+    font-size: 0.8rem;
+  }
+
+  /* 🎯 Button Responsiveness */
+  button,
+  select {
+    width: 90%;
+    font-size: 0.85rem;
+    padding: 8px 12px;
+    margin: 6px auto;
+    display: block;
+  }
+
+  #text-display {
+    font-size: 0.85rem;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 320px) {
+  .hero-header {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .logo {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  #lang-select {
+    width: 100%;
+    max-width: 150px;
+  }
+
+  #era-name {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  #go-to-room-btn {
+    width: 100%;
+    max-width: 160px;
+    font-size: 0.9rem;
+    padding: 10px;
+    margin: 5px auto;
+    display: block;
+    word-break: break-word;
+    line-height: 1.2;
+  }
+
+  #text-display {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  #start-btn,
+  #stop-btn {
+    width: 45%;
+    font-size: 1rem;
+    padding: 8px;
+    margin: 10px 2.5%;
+  }
+
+  /* Prevent horizontal scrolling */
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+}
+/* ✅ Optional Media Query: Ultra small screens (280px) */
+@media (max-width: 280px) {
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    font-size: 0.8rem;
+  }
+
+  h1 {
+    font-size: 1.2rem;
+  }
+
+  .era-box img {
+    height: 80px;
+  }
+
+  .era-box h2 {
+    font-size: 0.8rem;
+  }
+}
+
+</style>
+</head>
+<body>
+  <section class="festivals-hero">
+    <!-- ✅ Hero Header with logo and nav (matches homepage) -->
+    <div class="hero-header">
+      <div class="logo">Aarambh</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="festivals.html" >Festivals</a></li>
+        <li><a href="artforms.html">Artforms</a></li>
+         <li><a href="narrationroom.html" class="active">History</a></li>
+        <li><a href="Travel.html">Travel With Us</a></li>
+        <li><a href="chatbot.html">AarambhBot</a></li>
+      </ul>
+    </div>
+
+    <h1>Room of History - Choose an Era</h1>
+
+    <!-- ✅ Wrap era boxes in a container to align them horizontally -->
+    <div class="era-container">
+      <div class="era-box" onclick="openEra('ancient')">
+        <img src="assets/images/ancient.png" alt="Ancient Era" />
+        <h2>Ancient Era</h2>
+      </div>
+
+      <div class="era-box" onclick="openEra('medieval')">
+        <img src="assets/images/medieval.png" alt="Medieval Era" />
+        <h2>Medieval Era</h2>
+      </div>
+
+      <div class="era-box" onclick="openEra('british')">
+        <img src="assets/images/british.png" alt="British Era" />
+        <h2>British Era</h2>
+      </div>
+
+      <div class="era-box" onclick="openEra('modern')">
+        <img src="assets/images/modern.png" alt="Modern Era" />
+        <h2>Modern Era</h2>
+      </div>
+
+      <div class="era-box" onclick="openEra('future')">
+        <img src="assets/images/future.png" alt="Future Era" />
+        <h2>Future Era</h2>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function openEra(eraKey) {
+      window.location.href = `narration.html?era=${eraKey}`;
+    }
+  </script>
+</body>
+</html>
