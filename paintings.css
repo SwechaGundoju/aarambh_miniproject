@@ -31,7 +31,7 @@ h1 {
   font-weight: bold;
 }
 
-/* SECTION STYLING */
+
 .section {
   display: flex;
   flex-wrap: wrap;
@@ -87,7 +87,7 @@ h1 {
   margin-bottom: 10px;
 }
 
-/* Responsive */
+
 @media screen and (max-width: 768px) {
   .section {
     flex-direction: column !important;
